@@ -1,10 +1,22 @@
 name: Django CI
+on: [push]
+jobs:
+  test_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+      - name: Run Django unit tests
+        run:
+          pip3 install --user django
+          python3 manage.py tests
+
+#on:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 #jobs:
 #  build:
@@ -28,13 +40,3 @@ on:
 #    - name: Run Tests
 #      run: |
 #        python manage.py test
-
-jobs:
-  test_project:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: action/checkout@v3
-      - name: Run Django unit tests
-        run:
-          pip3 install --user django
-          python3 manage.py tests
