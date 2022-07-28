@@ -6,10 +6,11 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-
-      - name: Run Django unit tests
+      - name: Install Dependencies
         run:
           pip3 install --user django
+      - name: Run Django unit tests
+        run:
           python3 manage.py tests
 
 #on:
